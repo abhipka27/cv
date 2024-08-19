@@ -20,4 +20,9 @@ This project is a personal portfolio website designed to showcase my skills, pro
 For a live demo, visit [here](https://abhipka27.github.io/cv/).
 
 ## GitHub Repository:  
-For more details, check out the [GitHub README](https://github.com/abhipka27/cv/blob/main/README.md).
+For more details, check out the [GitHub Repository](https://github.com/abhipka27/cv/tree/main).
+
+To clone the repository, use the following command in your terminal:
+
+```bash
+git clone https://github.com/abhipka27/cv.git
