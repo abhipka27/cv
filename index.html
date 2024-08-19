@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishekagouda Patil - CV</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Source Code Pro", monospace;
+            margin: 0;
+            padding: 0;
+            color: #f0f0f0;
+        }
+        body {
+            background-color: #1e1e1e;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .profile-header {
+            background-color: #282a36;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .profile-header:hover {
+            transform: translateY(-5px);
+        }
+        .profile-img {
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #bd93f9;
+            margin-right: 20px;
+            transition: transform 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .profile-info {
+            flex-grow: 1;
+        }
+        .nav-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .nav-option {
+            background-color: #44475a;
+            color: #f8f8f2;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-option:hover, .nav-option.active {
+            background-color: #bd93f9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .section {
+            background-color: #282a36;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section.active {
+            display: block;
+        }
+        .section h2 {
+            color: #ff79c6;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #44475a;
+            padding-bottom: 10px;
+        }
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .skill-item {
+            background-color: #44475a;
+            color: #50fa7b;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skill-item i {
+            width: 20px;
+            text-align: center;
+        }
+        .skill-item:hover {
+            background-color: #6272a4;
+            color: #f8f8f2;
+            transform: translateX(10px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .project {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #44475a;
+            transition: transform 0.3s ease;
+        }
+        .project:hover {
+            transform: translateX(10px);
+        }
+        .project:last-child {
+            border-bottom: none;
+        }
+        .project h3 {
+            color: #8be9fd;
+        }
+        .certification-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .certification-list li {
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .certification-list li:hover {
+            transform: translateX(10px);
+        }
+        .certification-list li::before {
+            content: "•";
+            color: #50fa7b;
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        .certification-list a, a {
+            color: #8be9fd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .certification-list a:hover, a:hover {
+            color: #ff79c6;
+            text-decoration: underline;
+        }
+        .code-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            background-color: #1e1e1e;
+            opacity: 0.2;
+        }
+        .code-line {
+            position: absolute;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 14px;
+            color: #50fa7b;
+            white-space: nowrap;
+        }
+        .education-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #44475a;
+    transition: transform 0.3s ease;
+}
+
+.education-item:last-child {
+    border-bottom: none;
+}
+
+.education-item:hover {
+    transform: translateX(10px);
+}
+
+.education-item i {
+    font-size: 2em;
+    color: #50fa7b;
+    margin-right: 20px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.education-content {
+    flex-grow: 1;
+}
+
+.education-content h3 {
+    color: #8be9fd;
+    margin-bottom: 5px;
+}
+
+.education-content p {
+    margin: 0;
+    color: #f8f8f2;
+}
+        footer {
+            background-color: #282a36;
+            color: #f8f8f2;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+        @keyframes shimmer {
+    0% {
+        color: #f0f0f0;
+    }
+    50% {
+        color: #ff79c6;
+    }
+    100% {
+        color: #f0f0f0;
+    }
+}
+
+#about p {
+    animation: shimmer 3s infinite;
+}
+
+        
+    </style>
+</head>
+<body>
+    <div class="code-bg" id="codeBg"></div>
+    <div class="container">
+        <div class="profile-header">
+            <img src="https://avatars.githubusercontent.com/u/161637238" alt="Abhishekagouda Patil" class="profile-img">
+            <div class="profile-info">
+                <h1>Abhishekagouda Patil</h1>
+                <p>Haveri, Karnataka, India</p>
+            </div>
+        </div>
+
+        <div class="nav-options">
+            <button class="nav-option" data-section="about"><i class="fas fa-user"></i> About</button>
+            <button class="nav-option" data-section="education"><i class="fas fa-graduation-cap"></i> Education</button>
+            <button class="nav-option" data-section="skills"><i class="fas fa-cogs"></i> Skills</button>
+            <button class="nav-option" data-section="certifications"><i class="fas fa-certificate"></i> Certifications</button>
+            <button class="nav-option" data-section="projects"><i class="fas fa-project-diagram"></i> Projects</button>
+            <button class="nav-option" data-section="contact"><i class="fas fa-envelope"></i> Contact</button>
+        </div>
+
+        <div id="about" class="section">
+            <h2>About Me</h2>
+            <p class="typing-effect">Hello, I'm Abhishekagouda Patil, a passionate student of Computer Science and Information Technology at Reva University, Bangalore. My journey through the world of technology has ignited a passion for problem-solving and innovation. I am eager to apply my knowledge and skills to create impactful solutions.</p>
+        </div>
+
+        <div id="education" class="section">
+    <h2>Education</h2>
+    <div class="education-item">
+        <i class="fas fa-university"></i>
+        <div class="education-content">
+            <h3>B. Tech in Computer Science and Information Technology</h3>
+            <p>Reva University, Bengaluru, Karnataka, India</p>
+            <p>Dec 2022 - Aug 2025 (Pursuing) | Current CGPA: 8.13</p>
+        </div>
+    </div>
+
+    <div class="education-item">
+        <i class="fas fa-laptop-code"></i>
+        <div class="education-content">
+            <h3>Diploma in Computer Science and Engineering</h3>
+            <p>Govt Polytechnic Hanagal, Haveri, Karnataka, India</p>
+            <p>June 2019 - April 2022 | Percentage: 71.2%</p>
+        </div>
+    </div>
+
+    <div class="education-item">
+        <i class="fas fa-school"></i>
+        <div class="education-content">
+            <h3>SSLC</h3>
+            <p>GHS Bommanahalli, Haveri, Karnataka, India</p>
+            <p>2018 | Percentage: 71.84%</p>
+        </div>
+    </div>
+</div>
+
+        <div id="skills" class="section">
+            <h2>Core Technical Skills</h2>
+            <div class="skills-list">
+                <div class="skill-item"><i class="fas fa-code"></i> Front-End Web Developing</div>
+                <div class="skill-item"><i class="fas fa-copyright"></i> C programming</div>
+                <div class="skill-item"><i class="fab fa-java"></i> Java Programming</div>
+                <div class="skill-item"><i class="fab fa-microsoft"></i> Basics of C# (C Sharp)</div>
+                <div class="skill-item"><i class="fas fa-cloud"></i> Cloud Computing</div>
+                <div class="skill-item"><i class="fab fa-php"></i> PHP</div>
+                <div class="skill-item"><i class="fas fa-database"></i> Database Management (MySQL)</div>
+                <div class="skill-item"><i class="fab fa-wordpress"></i> Content Management System (WordPress)</div>
+                <div class="skill-item"><i class="fas fa-search"></i> SEO (Search Engine Optimization)</div>
+            </div>
+        </div>
+
+        <div id="certifications" class="section">
+            <h2>Certifications</h2>
+            <ul class="certification-list">
+                <li><a href="#">Complete JAVASCRIPT with HTML5,CSS3 By Udemy</a></li>
+                <li><a href="#">Front End Development – HTML By Great Learning</a></li>
+                <li><a href="#">MySQL for Beginners: A Complete Training for beginners By Udemy</a></li>
+                <li><a href="#">Understanding Basic SQL Syntax by Coursera</a></li>
+                <li><a href="#">Intro to Programming With C# (C Sharp) By Coursera</a></li>
+                <li><a href="#">Big Data and AI By Great Learning</a></li>
+                <li><a href="#">Introduction to Cloud Computing By Infosys Springboard</a></li>
+            </ul>
+        </div>
+
+        <div id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Todo List App Using MERN Stack</h3>
+                <p>Developed a Todo List application using the MERN stack, incorporating features such as task management, user authentication, and real-time updates.</p>
+            </div>
+
+            <div class="project">
+                <h3>URL Shortener Using Node.js, MongoDB, and HTML/CSS/JavaScript</h3>
+                <p>Implemented a URL shortener service using Node.js for the backend, MongoDB for the database, and HTML/CSS/JavaScript for the frontend, providing a simple interface for URL shortening and management.</p>
+            </div>
+
+            <div class="project">
+                <h3>Parking Management System Using PHP MySQL and phpMyAdmin</h3>
+                <p>Developed a Parking Management System using PHP, MySQL, and phpMyAdmin, facilitating efficient parking space management, reservation handling, and secure payment processing.</p>
+            </div>
+
+            <div class="project">
+                <h3>Word Guessing Game Using C# (C Sharp)</h3>
+                <p>Designed and implemented a Word Guessing Game using C# (C Sharp), fostering user engagement through interactive gameplay and dynamic word challenges.</p>
+            </div>
+        </div>
+
+        <div id="contact" class="section">
+        <h2>Contact Information</h2>
+        <p><i class="fas fa-phone"></i> Phone: +91 6362383203</p>
+        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:abhipatilb2001@gmail.com" target="_blank">abhipatilb2001@gmail.com</a></p>
+        <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/abhika27/" target="_blank">linkedin.com/in/abhika27</a></p>
+        <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/abhipka27" target="_blank">github.com/abhipka27</a></p>
+        <p><i class="fab fa-stack-overflow"></i> Stack Overflow: <a href="https://stackoverflow.com/users/26684291/abhishekagouda-patil" target="_blank">stackoverflow.com/26684291</a></p>
+        <p><i class="fab fa-wordpress"></i> WordPress: <a href="https://abhika27.wordpress.com/" target="_blank">abhika27.wordpress.com</a></p>
+        <p><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/abhi_ka.27/" target="_blank">instagram.com/abhi_ka.27</a></p>
+        <p><i class="fab fa-facebook"></i> Facebook: <a href="https://www.facebook.com/abhi.ka27" target="_blank">facebook.com/abhi.ka27</a></p>
+        <p><i class="fab fa-snapchat"></i> Snapchat: <a href="https://www.snapchat.com/add/abhipka27" target="_blank">snapchat.com/add/abhipka27</a></p>
+        <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://api.whatsapp.com/send?phone=916362383203&text=Hi%20Abhi%20Patil..!%20I%20got%20Your%20information%20from%20your%20blog%F0%9F%98%80" target="_blank">WhatsApp Me</a></p>
+    </div>
+    </div>
+
+    <footer>
+    <p>&copy; 2024 <a href="https://abhika27.blogspot.com/" target="_blank">Abhishekagouda Patil</a>. All rights reserved.</p>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navOptions = document.querySelectorAll('.nav-option');
+            const sections = document.querySelectorAll('.section');
+
+            function showSection(sectionId) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(sectionId).classList.add('active');
+                navOptions.forEach(option => {
+                    option.classList.remove('active');
+                    if (option.getAttribute('data-section') === sectionId) {
+                        option.classList.add('active');
+                    }
+                });
+            }
+
+            navOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+
+            // Show about section by default
+            showSection('about');
+
+            // Programming effect
+            const codeBg = document.getElementById('codeBg');
+            const codeSnippets = [
+                'function helloWorld() {',
+                '    console.log("Hello, World!");',
+                '}',
+                'const arr = [1, 2, 3, 4, 5];',
+                'arr.map(x => x * 2);',
+                'class Person {',
+                '    constructor(name) {',
+                '        this.name = name;',
+                '    }',
+                '}',
+                'import React from "react";',
+                'const App = () => {',
+                '    return <div>Hello React</div>;',
+                '};'
+            ];
+
+            function createCodeLine() {
+                const line = document.createElement('div');
+                line.className = 'code-line';
+                line.style.left = Math.random() * window.innerWidth + 'px';
+                line.style.top = Math.random() * window.innerHeight + 'px';
+                line.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                codeBg.appendChild(line);
+
+                setTimeout(() => {
+                    line.remove();
+                }, 1000);
+            }
+
+            setInterval(createCodeLine, 100);
+        });
+         document.addEventListener('DOMContentLoaded', function() {
+            // JavaScript functionality for interactive elements
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+    const originalFooterText = "© 2024 Abhishekagouda Patil. All rights reserved.";
+    const redirectUrl = "https://abhika27.blogspot.com/";
+
+    const footerElement = document.querySelector("footer p");
+
+    if (footerElement && footerElement.innerText !== originalFooterText) {
+        window.location.href = redirectUrl;
+    }
+
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'characterData' || mutation.type === 'childList') {
+                if (footerElement.innerText !== originalFooterText) {
+                    window.location.href = redirectUrl;
+                }
+            }
+        });
+    });
+
+    observer.observe(footerElement, { childList: true, subtree: true, characterData: true });
+});
+
+    </script>
+</body>
+</html>
