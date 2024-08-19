@@ -14,10 +14,14 @@
             color: #f0f0f0;
         }
         body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             background-color: #1e1e1e;
             overflow-x: hidden;
         }
         .container {
+            flex: 1;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
@@ -143,6 +147,13 @@
         }
         .project h3 {
             color: #8be9fd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .project h3 i {
+            font-size: 1.2em;
+            color: #50fa7b;
         }
         .certification-list {
             list-style-type: none;
@@ -158,9 +169,11 @@
             transform: translateX(10px);
         }
         .certification-list li::before {
-            content: "•";
+            content: "\f0a3";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
             color: #50fa7b;
-            font-size: 1.5em;
+            font-size: 1.2em;
             margin-right: 10px;
         }
         .certification-list a, a {
@@ -191,52 +204,44 @@
             white-space: nowrap;
         }
         .education-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #44475a;
-    transition: transform 0.3s ease;
-}
-
-.education-item:last-child {
-    border-bottom: none;
-}
-
-.education-item:hover {
-    transform: translateX(10px);
-}
-
-.education-item i {
-    font-size: 2em;
-    color: #50fa7b;
-    margin-right: 20px;
-    min-width: 40px;
-    text-align: center;
-}
-
-.education-content {
-    flex-grow: 1;
-}
-
-.education-content h3 {
-    color: #8be9fd;
-    margin-bottom: 5px;
-}
-
-.education-content p {
-    margin: 0;
-    color: #f8f8f2;
-}
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #44475a;
+            transition: transform 0.3s ease;
+        }
+        .education-item:last-child {
+            border-bottom: none;
+        }
+        .education-item:hover {
+            transform: translateX(10px);
+        }
+        .education-item i {
+            font-size: 2em;
+            color: #50fa7b;
+            margin-right: 20px;
+            min-width: 40px;
+            text-align: center;
+        }
+        .education-content {
+            flex-grow: 1;
+        }
+        .education-content h3 {
+            color: #8be9fd;
+            margin-bottom: 5px;
+        }
+        .education-content p {
+            margin: 0;
+            color: #f8f8f2;
+        }
         footer {
             background-color: #282a36;
             color: #f8f8f2;
             text-align: center;
             padding: 20px;
-            margin-top: 40px;
-            border-radius: 8px;
-            position: relative;
-            z-index: 1;
+            width: 100%;
+            z-index: 10;
         }
         @media (max-width: 768px) {
             .profile-header {
@@ -248,23 +253,49 @@
                 margin-bottom: 20px;
             }
         }
-        @keyframes shimmer {
-    0% {
-        color: #f0f0f0;
-    }
-    50% {
-        color: #ff79c6;
-    }
-    100% {
-        color: #f0f0f0;
-    }
-}
-
-#about p {
-    animation: shimmer 3s infinite;
-}
-
-        
+        .glitch {
+            position: relative;
+            color: #f0f0f0;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(141px, 9999px, 74px, 0); }
+            20% { clip: rect(49px, 9999px, 99px, 0); }
+            40% { clip: rect(46px, 9999px, 78px, 0); }
+            60% { clip: rect(134px, 9999px, 98px, 0); }
+            80% { clip: rect(4px, 9999px, 121px, 0); }
+            100% { clip: rect(40px, 9999px, 18px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(55px, 9999px, 29px, 0); }
+            20% { clip: rect(130px, 9999px, 144px, 0); }
+            40% { clip: rect(100px, 9999px, 23px, 0); }
+            60% { clip: rect(30px, 9999px, 62px, 0); }
+            80% { clip: rect(87px, 9999px, 94px, 0); }
+            100% { clip: rect(143px, 9999px, 148px, 0); }
+        }
     </style>
 </head>
 <body>
@@ -289,38 +320,38 @@
 
         <div id="about" class="section">
             <h2>About Me</h2>
-            <p class="typing-effect">Hello, I'm Abhishekagouda Patil, a passionate student of Computer Science and Information Technology at Reva University, Bangalore. My journey through the world of technology has ignited a passion for problem-solving and innovation. I am eager to apply my knowledge and skills to create impactful solutions.</p>
+            <p class="glitch" data-text="Hello, I'm Abhishekagouda Patil, a passionate student of Computer Science and Information Technology at Reva University, Bangalore. My journey through the world of technology has ignited a passion for problem-solving and innovation. I am eager to apply my knowledge and skills to create impactful solutions.">
+                Hello, I'm Abhishekagouda Patil, a passionate student of Computer Science and Information Technology at Reva University, Bangalore. My journey through the world of technology has ignited a passion for problem-solving and innovation. I am eager to apply my knowledge and skills to create impactful solutions.
+            </p>
         </div>
 
         <div id="education" class="section">
-    <h2>Education</h2>
-    <div class="education-item">
-        <i class="fas fa-university"></i>
-        <div class="education-content">
-            <h3>B. Tech in Computer Science and Information Technology</h3>
-            <p>Reva University, Bengaluru, Karnataka, India</p>
-            <p>Dec 2022 - Aug 2025 (Pursuing) | Current CGPA: 8.13</p>
+            <h2>Education</h2>
+            <div class="education-item">
+                <i class="fas fa-university"></i>
+                <div class="education-content">
+                    <h3>B. Tech in Computer Science and Information Technology</h3>
+                    <p>Reva University, Bengaluru, Karnataka, India</p>
+                    <p>Dec 2022 - Aug 2025 (Pursuing) | Current CGPA: 8.13</p>
+                </div>
+            </div>
+            <div class="education-item">
+                <i class="fas fa-laptop-code"></i>
+                <div class="education-content">
+                    <h3>Diploma in Computer Science and Engineering</h3>
+                    <p>Govt Polytechnic Hanagal, Haveri, Karnataka, India</p>
+                    <p>June 2019 - April 2022 | Percentage: 71.2%</p>
+                </div>
+            </div>
+            <div class="education-item">
+                <i class="fas fa-school"></i>
+                <div class="education-content">
+                    <h3>SSLC</h3>
+                    <p>GHS Bommanahalli, Haveri, Karnataka, India</p>
+                    <p>2018 | Percentage: 71.84%</p>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="education-item">
-        <i class="fas fa-laptop-code"></i>
-        <div class="education-content">
-            <h3>Diploma in Computer Science and Engineering</h3>
-            <p>Govt Polytechnic Hanagal, Haveri, Karnataka, India</p>
-            <p>June 2019 - April 2022 | Percentage: 71.2%</p>
-        </div>
-    </div>
-
-    <div class="education-item">
-        <i class="fas fa-school"></i>
-        <div class="education-content">
-            <h3>SSLC</h3>
-            <p>GHS Bommanahalli, Haveri, Karnataka, India</p>
-            <p>2018 | Percentage: 71.84%</p>
-        </div>
-    </div>
-</div>
 
         <div id="skills" class="section">
             <h2>Core Technical Skills</h2>
@@ -353,44 +384,41 @@
         <div id="projects" class="section">
             <h2>Projects</h2>
             <div class="project">
-                <h3>Todo List App Using MERN Stack</h3>
+                <h3><i class="fas fa-tasks"></i> Todo List App Using MERN Stack</h3>
                 <p>Developed a Todo List application using the MERN stack, incorporating features such as task management, user authentication, and real-time updates.</p>
             </div>
-
             <div class="project">
-                <h3>URL Shortener Using Node.js, MongoDB, and HTML/CSS/JavaScript</h3>
+                <h3><i class="fas fa-link"></i> URL Shortener Using Node.js, MongoDB, and HTML/CSS/JavaScript</h3>
                 <p>Implemented a URL shortener service using Node.js for the backend, MongoDB for the database, and HTML/CSS/JavaScript for the frontend, providing a simple interface for URL shortening and management.</p>
             </div>
-
             <div class="project">
-                <h3>Parking Management System Using PHP MySQL and phpMyAdmin</h3>
+                <h3><i class="fas fa-parking"></i> Parking Management System Using PHP MySQL and phpMyAdmin</h3>
                 <p>Developed a Parking Management System using PHP, MySQL, and phpMyAdmin, facilitating efficient parking space management, reservation handling, and secure payment processing.</p>
             </div>
-
             <div class="project">
-                <h3>Word Guessing Game Using C# (C Sharp)</h3>
+                <h3><i class="fas fa-gamepad"></i> Word Guessing Game Using C# (C Sharp)</h3>
                 <p>Designed and implemented a Word Guessing Game using C# (C Sharp), fostering user engagement through interactive gameplay and dynamic word challenges.</p>
             </div>
         </div>
 
         <div id="contact" class="section">
-        <h2>Contact Information</h2>
-        <p><i class="fas fa-phone"></i> Phone: +91 6362383203</p>
-        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:abhipatilb2001@gmail.com" target="_blank">abhipatilb2001@gmail.com</a></p>
-        <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/abhika27/" target="_blank">linkedin.com/in/abhika27</a></p>
-        <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/abhipka27" target="_blank">github.com/abhipka27</a></p>
-        <p><i class="fab fa-stack-overflow"></i> Stack Overflow: <a href="https://stackoverflow.com/users/26684291/abhishekagouda-patil" target="_blank">stackoverflow.com/26684291</a></p>
-        <p><i class="fab fa-wordpress"></i> WordPress: <a href="https://abhika27.wordpress.com/" target="_blank">abhika27.wordpress.com</a></p>
-        <p><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/abhi_ka.27/" target="_blank">instagram.com/abhi_ka.27</a></p>
-        <p><i class="fab fa-facebook"></i> Facebook: <a href="https://www.facebook.com/abhi.ka27" target="_blank">facebook.com/abhi.ka27</a></p>
-        <p><i class="fab fa-snapchat"></i> Snapchat: <a href="https://www.snapchat.com/add/abhipka27" target="_blank">snapchat.com/add/abhipka27</a></p>
-        <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://api.whatsapp.com/send?phone=916362383203&text=Hi%20Abhi%20Patil..!%20I%20got%20Your%20information%20from%20your%20blog%F0%9F%98%80" target="_blank">WhatsApp Me</a></p>
-    </div>
+            <h2>Contact Information</h2>
+            <p><i class="fas fa-phone"></i> Phone: +91 6362383203</p>
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:abhipatilb2001@gmail.com" target="_blank">abhipatilb2001@gmail.com</a></p>
+            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/abhika27/" target="_blank">linkedin.com/in/abhika27</a></p>
+            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/abhipka27" target="_blank">github.com/abhipka27</a></p>
+            <p><i class="fab fa-stack-overflow"></i> Stack Overflow: <a href="https://stackoverflow.com/users/26684291/abhishekagouda-patil" target="_blank">stackoverflow.com/26684291</a></p>
+            <p><i class="fab fa-wordpress"></i> WordPress: <a href="https://abhika27.wordpress.com/" target="_blank">abhika27.wordpress.com</a></p>
+            <p><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/abhi_ka.27/" target="_blank">instagram.com/abhi_ka.27</a></p>
+            <p><i class="fab fa-facebook"></i> Facebook: <a href="https://www.facebook.com/abhi.ka27" target="_blank">facebook.com/abhi.ka27</a></p>
+            <p><i class="fab fa-snapchat"></i> Snapchat: <a href="https://www.snapchat.com/add/abhipka27" target="_blank">snapchat.com/add/abhipka27</a></p>
+            <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://api.whatsapp.com/send?phone=916362383203&text=Hi%20Abhi%20Patil..!%20I%20got%20Your%20information%20from%20your%20blog%F0%9F%98%80" target="_blank">WhatsApp Me</a></p>
+        </div>
     </div>
 
     <footer>
-    <p>&copy; 2024 <a href="https://abhika27.blogspot.com/" target="_blank">Abhishekagouda Patil</a>. All rights reserved.</p>
-</footer>
+        <p>&copy; 2024 <a href="https://abhika27.blogspot.com/" target="_blank">Abhishekagouda Patil</a>. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -454,32 +482,29 @@
 
             setInterval(createCodeLine, 100);
         });
-         document.addEventListener('DOMContentLoaded', function() {
-            // JavaScript functionality for interactive elements
-        });
+
         document.addEventListener("DOMContentLoaded", function() {
-    const originalFooterText = "© 2024 Abhishekagouda Patil. All rights reserved.";
-    const redirectUrl = "https://abhika27.blogspot.com/";
+            const originalFooterText = "© 2024 Abhishekagouda Patil. All rights reserved.";
+            const redirectUrl = "https://abhika27.blogspot.com/";
 
-    const footerElement = document.querySelector("footer p");
+            const footerElement = document.querySelector("footer p");
 
-    if (footerElement && footerElement.innerText !== originalFooterText) {
-        window.location.href = redirectUrl;
-    }
-
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'characterData' || mutation.type === 'childList') {
-                if (footerElement.innerText !== originalFooterText) {
-                    window.location.href = redirectUrl;
-                }
+            if (footerElement && footerElement.innerText !== originalFooterText) {
+                window.location.href = redirectUrl;
             }
+
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'characterData' || mutation.type === 'childList') {
+                        if (footerElement.innerText !== originalFooterText) {
+                            window.location.href = redirectUrl;
+                        }
+                    }
+                });
+            });
+
+            observer.observe(footerElement, { childList: true, subtree: true, characterData: true });
         });
-    });
-
-    observer.observe(footerElement, { childList: true, subtree: true, characterData: true });
-});
-
     </script>
 </body>
 </html>
