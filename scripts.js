@@ -82,3 +82,13 @@
 
             observer.observe(footerElement, { childList: true, subtree: true, characterData: true });
         });
+window.addEventListener("load", function () {
+    setTimeout(() => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      preloader.style.visibility = "hidden";
+      setTimeout(() => {
+        preloader.remove();
+      }, 500); // time for fade-out
+    }, 2000); // stays for 2 seconds
+  });
