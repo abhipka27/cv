@@ -17,7 +17,7 @@ This project is a personal portfolio website designed to showcase my skills, pro
 - JavaScript  
 
 ## Live Demo:  
-For a live demo, visit [here](https://abhipka27.github.io/cv/).
+For a live demo, visit [here](https://abhika27.blogspot.com/).
 
 ## GitHub Repository:  
 For more details, check out the [GitHub Repository](https://github.com/abhipka27/cv/tree/main).
