@@ -73,7 +73,7 @@
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-            const originalFooterText = "© 2025 Abhishekagouda Patil. All rights reserved.";
+            const originalFooterText = "Â© 2025 Abhishekagouda Patil. All rights reserved.";
             const redirectUrl = "https://abhika27.blogspot.com/";
 
             const footerElement = document.querySelector("footer p");
@@ -94,89 +94,111 @@
 
             observer.observe(footerElement, { childList: true, subtree: true, characterData: true });
         });
-  document.addEventListener("DOMContentLoaded", function () {
-    // CMD-style progress loader logic
-    const barElem = document.getElementById('cmdProgressBar');
-    const barLength = 20;
-    let progress = 0;
-    const duration = 2000; // 2 seconds
-    const interval = 20;
-    const start = Date.now();
 
-    function setCmdProgress(percent) {
-      const filled = Math.round((percent / 100) * barLength);
-      const empty = barLength - filled;
-      const bar = '[' + '='.repeat(filled > 0 ? filled - 1 : 0) + (filled > 0 ? '>' : '') + ' '.repeat(empty) + ']';
-      barElem.textContent = `${bar} ${Math.round(percent)}%`;
-    }
+        document.addEventListener("DOMContentLoaded", function () {
+            // Enhanced CMD-style progress loader with actual loading status
+            const barElem = document.getElementById('cmdProgressBar');
+            const cmdLine = document.querySelector('.cmd-line');
+            const barLength = 20;
+            let progress = 0;
+            const duration = 3000; // 3 seconds total
+            const interval = 50;
+            const start = Date.now();
+            
+            // Loading stages with messages
+            const loadingStages = [
+                { progress: 0, message: "> Initializing system..." },
+                { progress: 15, message: "> Loading components..." },
+                { progress: 35, message: "> Installing dependencies..." },
+                { progress: 60, message: "> Configuring modules..." },
+                { progress: 80, message: "> Finalizing setup..." },
+                { progress: 100, message: "> System ready!" }
+            ];
 
-    setCmdProgress(0);
-    const progressTimer = setInterval(() => {
-      const elapsed = Date.now() - start;
-      progress = Math.min((elapsed / duration) * 100, 100);
-      setCmdProgress(progress);
-      if (progress >= 100) {
-        clearInterval(progressTimer);
-      }
-    }, interval);
+            function setCmdProgress(percent) {
+                const filled = Math.round((percent / 100) * barLength);
+                const empty = barLength - filled;
+                const bar = '[' + '='.repeat(filled > 0 ? filled - 1 : 0) + (filled > 0 ? '>' : '') + ' '.repeat(empty) + ']';
+                barElem.textContent = `${bar} ${Math.round(percent)}%`;
+                
+                // Update loading message based on progress
+                const currentStage = loadingStages.find(stage => percent >= stage.progress);
+                if (currentStage && cmdLine) {
+                    cmdLine.textContent = currentStage.message;
+                }
+            }
 
-    window.addEventListener("load", function () {
-      setTimeout(() => {
-        const preloader = document.getElementById("preloader");
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
-        setTimeout(() => {
-          preloader.remove();
-        }, 500); // time for fade-out
-      }, 2000); // stays for 2 seconds
-    });
-  });
+            setCmdProgress(0);
+            
+            const progressTimer = setInterval(() => {
+                const elapsed = Date.now() - start;
+                progress = Math.min((elapsed / duration) * 100, 100);
+                setCmdProgress(progress);
+                
+                if (progress >= 100) {
+                    clearInterval(progressTimer);
+                    // Wait a bit more before hiding preloader
+                    setTimeout(() => {
+                        const preloader = document.getElementById("preloader");
+                        if (preloader) {
+                            preloader.style.opacity = "0";
+                            preloader.style.visibility = "hidden";
+                            setTimeout(() => {
+                                preloader.remove();
+                            }, 500);
+                        }
+                    }, 500);
+                }
+            }, interval);
 
-    // Certificate Modal Popup Logic (updated for buttons)
-    const certModal = document.getElementById('certificateModal');
-    const certImg = document.getElementById('certificateImg');
-    const closeModal = document.getElementById('closeModal');
-    document.querySelectorAll('.view-cert-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const li = this.closest('li');
-        const imgSrc = li.getAttribute('data-cert');
-        if (imgSrc) {
-          certImg.src = imgSrc;
-          certModal.classList.add('active');
-        }
-      });
-    });
-    document.querySelectorAll('.cred-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const li = this.closest('li');
-        const link = li.getAttribute('data-link');
-        if (link) {
-          window.open(link, '_blank');
-        }
-      });
-    });
-    closeModal.addEventListener('click', function() {
-      certModal.classList.remove('active');
-      certImg.src = '';
-    });
-    certModal.addEventListener('click', function(e) {
-      if (e.target === certModal) {
-        certModal.classList.remove('active');
-        certImg.src = '';
-      }
-    });
+            // Also hide preloader when window is fully loaded
+            window.addEventListener("load", function () {
+                setTimeout(() => {
+                    const preloader = document.getElementById("preloader");
+                    if (preloader && preloader.style.opacity !== "0") {
+                        preloader.style.opacity = "0";
+                        preloader.style.visibility = "hidden";
+                        setTimeout(() => {
+                            preloader.remove();
+                        }, 500);
+                    }
+                }, 1000);
+            });
+        });
 
-    // Scroll to Top Button Logic
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 200) {
-        scrollTopBtn.style.display = 'flex';
-      } else {
-        scrollTopBtn.style.display = 'none';
-      }
-    });
-    scrollTopBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+        // View Credential Button Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.view-credential-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const li = this.closest('li');
+                    const link = li.getAttribute('data-link');
+                    if (link && link !== '#') {
+                        window.open(link, '_blank');
+                    } else {
+                        // Show a message if no link is available
+                        alert('Credential link not available at the moment.');
+                    }
+                });
+            });
+        });
+
+        // Scroll to Top Button Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 200) {
+                        scrollTopBtn.style.display = 'flex';
+                    } else {
+                        scrollTopBtn.style.display = 'none';
+                    }
+                });
+                
+                scrollTopBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
