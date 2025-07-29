@@ -1,4 +1,114 @@
-body, h1, h2, h3, h4, h5, h6 {
+/* Improve button styles with inset effect */
+/* Enhanced Contact Icons Styling */
+.contact-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: 0 15px;
+}
+
+.contact-icon-btn {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: linear-gradient(145deg, #2a2d3e, #323650);
+    border-radius: 15px;
+    text-decoration: none;
+    color: #f8f8f2;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2),
+                -3px -3px 10px rgba(255, 255, 255, 0.05);
+}
+
+.contact-icon-btn i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-icon-btn span {
+    font-size: 14px;
+    text-align: center;
+}
+button {
+  background-color: #007bff; /* Primary blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  inset: 0; /* Use inset for positioning */
+  border-radius: 5px;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+button:hover::after {
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3); /* Glow effect */
+}
+
+/* Add animations for contact section */
+.contact-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style for contact form inputs */
+.contact-section input,
+.contact-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Style for submit button */
+.contact-section button {
+  background-color: #28a745; /* Green for submit */
+  color: #fff;
+}
+
+.contact-section button:hover {
+  background-color: #218838; /* Darker green on hover */
+}body, h1, h2, h3, h4, h5, h6 {
             font-family: "Source Code Pro", monospace;
             margin: 0;
             padding: 0;
@@ -68,43 +178,106 @@ body, h1, h2, h3, h4, h5, h6 {
             font-size: 1.1em;
             margin: 0;
         }
-        .nav-options {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 18px;
-            margin-bottom: 28px;
-            background: transparent;
-        }
+        /* Clean Menu Colors and Animations */
         .nav-option {
-            background: #44475a;
-            color: #f8f8f2;
+            background: #2c2f3a;
+            color: #8be9fd;
             border: none;
-            padding: 14px 28px;
+            padding: 15px 25px;
             cursor: pointer;
-            border-radius: 25px;
-            font-size: 1.08em;
-            font-weight: 600;
-            transition: all 0.3s, background 0.4s cubic-bezier(0.4,0,0.2,1);
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 2px 8px rgba(80, 250, 123, 0.08);
-            /* Animated gradient on hover */
-            background-size: 200% 200%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: inset 0 0 0 1px rgba(139, 233, 253, 0.1);
         }
-        .nav-option:hover, .nav-option.active {
-            background: linear-gradient(90deg, #bd93f9, #50fa7b, #ffb86c, #bd93f9);
-            background-size: 400% 400%;
-            animation: gradientMove 2s linear infinite;
-            color: #23243a;
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 4px 16px rgba(255, 121, 198, 0.18);
+
+        .nav-option i {
+            font-size: 1.2em;
+            transition: all 0.4s ease;
+            color: #50fa7b;
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        .nav-option:hover,
+        .nav-option.active {
+            background: #3c3f4a;
+            color: #f8f8f2;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+                        inset 0 0 0 2px #50fa7b;
+        }
+
+        .nav-option:hover i,
+        .nav-option.active i {
+            transform: scale(1.2) rotate(10deg);
+            color: #ff79c6;
+        }
+
+        @keyframes menuPulse {
+            0% { box-shadow: 0 0 0 0 rgba(80, 250, 123, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(80, 250, 123, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(80, 250, 123, 0); }
+        }
+
+        .nav-option:active {
+            transform: scale(0.95);
+            animation: menuPulse 0.8s ease-in-out;
+        }
+        
+        /* Enhanced Resume Section Styles */
+        .resume-container {
+            background: rgba(40, 42, 54, 0.8);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .resume-frame {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        #resume-viewer {
+            border: none;
+            display: block;
+            background: #fff;
+        }
+
+        .resume-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #6e8efb, #50fa7b);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(110, 142, 251, 0.2);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(110, 142, 251, 0.3);
+            background: linear-gradient(135deg, #50fa7b, #6e8efb);
+        }
+
+        .download-btn i {
+            font-size: 1.2em;
         }
         .section {
             background: #282a36;
@@ -671,50 +844,7 @@ body, h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
-.certificate-modal {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(30, 30, 30, 0.85);
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.3s;
-}
-.certificate-modal.active {
-  display: flex;
-}
-.certificate-img {
-  max-width: 90vw;
-  max-height: 80vh;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  background: #fff;
-}
-.close-modal {
-  position: absolute;
-  top: 32px;
-  right: 48px;
-  font-size: 2.5em;
-  color: #ffb86c;
-  cursor: pointer;
-  z-index: 10001;
-  background: rgba(40,42,54,0.8);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, color 0.2s;
-}
-.close-modal:hover {
-  background: #ffb86c;
-  color: #23243a;
-}
+
 
 #scrollTopBtn {
   display: none;
@@ -746,86 +876,161 @@ body, h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Add new styles for contact icons */
+/* Enhanced Contact Icons Styling */
 .contact-icons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 18px;
-  margin-bottom: 8px;
-}
-.contact-icon-btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  min-width: 54px;
-  height: 54px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #23243a 60%, #2d2e4a 100%);
-  color: #50fa7b;
-  font-size: 2em;
-  border: 2px solid #44475a;
-  box-shadow: 0 2px 8px rgba(80, 250, 123, 0.10);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s, transform 0.2s;
-  text-decoration: none;
-  outline: none;
-  padding: 0 22px 0 18px;
-  font-weight: 600;
-}
-.contact-icon-btn span {
-  font-size: 1rem;
-  color: #50fa7b;
-  letter-spacing: 0.01em;
-  font-family: inherit;
-  font-weight: 600;
-  transition: color 0.2s;
-}
-/* Platform-specific hover colors */
-.contact-icon-btn.phone:hover, .contact-icon-btn.phone:focus { background: #25d366; color: #fff; border-color: #25d366; }
-.contact-icon-btn.email:hover, .contact-icon-btn.email:focus { background: #ffb86c; color: #23243a; border-color: #ffb86c; }
-.contact-icon-btn.linkedin:hover, .contact-icon-btn.linkedin:focus { background: #0077b5; color: #fff; border-color: #0077b5; }
-.contact-icon-btn.github:hover, .contact-icon-btn.github:focus { background: #333; color: #fff; border-color: #333; }
-.contact-icon-btn.stackoverflow:hover, .contact-icon-btn.stackoverflow:focus { background: #f48024; color: #fff; border-color: #f48024; }
-.contact-icon-btn.wordpress:hover, .contact-icon-btn.wordpress:focus { background: #21759b; color: #fff; border-color: #21759b; }
-.contact-icon-btn.instagram:hover, .contact-icon-btn.instagram:focus { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: #fff; border-color: #d6249f; }
-.contact-icon-btn.facebook:hover, .contact-icon-btn.facebook:focus { background: #1877f3; color: #fff; border-color: #1877f3; }
-.contact-icon-btn.snapchat:hover, .contact-icon-btn.snapchat:focus { background: #fffc00; color: #23243a; border-color: #fffc00; }
-.contact-icon-btn.whatsapp:hover, .contact-icon-btn.whatsapp:focus { background: #25d366; color: #fff; border-color: #25d366; }
-.contact-icon-btn:hover span, .contact-icon-btn:focus span { color: #fff; }
-@media (max-width: 700px) {
-  .contact-icons {
-    gap: 12px;
-    justify-content: flex-start;
-    margin-top: 10px;
-    margin-bottom: 2px;
-  }
-  .contact-icon-btn {
-    min-width: 44px;
-    height: 44px;
-    font-size: 1.2em;
-    padding: 0 12px 0 10px;
-  }
-  .contact-icon-btn span {
-    font-size: 0.97em;
-  }
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: 0 15px;
 }
 
-/* CMD Preloader Styles */
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #0a0a0a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
+.contact-icon-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    background: linear-gradient(145deg, #2a2d3e, #323650);
+    border-radius: 15px;
+    text-decoration: none;
+    color: #f8f8f2;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2),
+                -3px -3px 10px rgba(255, 255, 255, 0.05);
+}
+
+.contact-icon-btn::before {
+    content: attr(data-userid);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: rgba(189, 147, 249, 0.9);
+    color: #282a36;
+    padding: 5px;
+    font-size: 0.85em;
+    font-weight: 600;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.contact-icon-btn:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(145deg, #323650, #2a2d3e);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3),
+                -8px -8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.contact-icon-btn:hover::before {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.contact-icon-btn i {
+    font-size: 28px;
+    margin-bottom: 12px;
+    transition: all 0.4s ease;
+    background: linear-gradient(45deg, #bd93f9, #50fa7b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-icon-btn:hover i {
+    transform: scale(1.2) rotate(5deg);
+    filter: brightness(1.2);
+}
+
+.contact-icon-btn span {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: linear-gradient(45deg, #f8f8f2, #bd93f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Platform-specific hover effects */
+.contact-icon-btn.linkedin:hover {
+    background: linear-gradient(145deg, #0077b5, #00669c);
+}
+
+.contact-icon-btn.github:hover {
+    background: linear-gradient(145deg, #333, #2b2b2b);
+}
+
+.contact-icon-btn.email:hover {
+    background: linear-gradient(145deg, #ea4335, #d62516);
+}
+
+.contact-icon-btn.phone:hover {
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+}
+
+.contact-icon-btn.stackoverflow:hover {
+    background: linear-gradient(145deg, #f48024, #e67321);
+}
+
+.contact-icon-btn.wordpress:hover {
+    background: linear-gradient(145deg, #21759b, #1d6586);
+}
+
+.contact-icon-btn.instagram:hover {
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+.contact-icon-btn.facebook:hover {
+    background: linear-gradient(145deg, #1877f2, #166fe5);
+}
+
+.contact-icon-btn.snapchat:hover {
+    background: linear-gradient(145deg, #fffc00, #ffe600);
+}
+
+.contact-icon-btn.whatsapp:hover {
+    background: linear-gradient(145deg, #25d366, #20bd5a);
+}
+
+/* Add smooth reveal animation for user IDs */
+@keyframes revealUserId {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Add responsive breakpoints */
+@media (max-width: 1200px) {
+    .contact-icons {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .contact-icons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-icons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .contact-icons {
+        grid-template-columns: 1fr;
+    }
 }
 .cmd-preloader-box {
   background: #181818;
@@ -871,5 +1076,365 @@ body, h1, h2, h3, h4, h5, h6 {
     font-size: 1em;
     min-width: 0;
     padding: 8px 6px;
+  }
+}
+/* Enhanced Contact Icons Styling */
+.contact-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: 0 15px;
+}
+
+.contact-icon-btn {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: linear-gradient(145deg, #2a2d3e, #323650);
+    border-radius: 15px;
+    text-decoration: none;
+    color: #f8f8f2;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2),
+                -3px -3px 10px rgba(255, 255, 255, 0.05);
+}
+
+.contact-icon-btn i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-icon-btn span {
+    font-size: 14px;
+    text-align: center;
+}
+.nav-options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+  .nav-options {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px 12px; /* vertical and horizontal gap */
+    margin-bottom: 18px;
+  }
+  .nav-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    min-width: 140px;
+    max-width: 90vw;
+    padding: 12px 18px;
+    border-radius: 32px;
+    font-size: 1em;
+    box-shadow: 0 4px 16px rgba(80,250,123,0.18), 0 2px 8px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 8px;
+  }
+  .nav-option span {
+    display: inline;
+    font-size: 1em;
+    line-height: 1.1;
+  }
+  .nav-option i {
+    font-size: 1.2em;
+    margin-bottom: 0;
+  }
+  .nav-option.active {
+    background: #ffb86c !important;
+    color: #23243a !important;
+    font-weight: bold;
+    box-shadow: 0 6px 24px rgba(255, 184, 108, 0.18);
+  }
+}
+
+/* --- General Improvements --- */
+body {
+  background: linear-gradient(135deg, #23243a 0%, #1e1e1e 100%);
+  color: #f0f0f0;
+}
+.container {
+  box-shadow: 0 8px 32px rgba(80,250,123,0.04);
+  border-radius: 24px;
+  background: rgba(40,42,54,0.92);
+  padding: 24px 12px;
+}
+.section {
+  margin-bottom: 32px;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(80,250,123,0.10), 0 1.5px 6px rgba(0,0,0,0.10);
+  padding: 32px 20px;
+  border: 1px solid #44475a;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.section:hover {
+  background: #23243a;
+  box-shadow: 0 8px 32px rgba(80,250,123,0.18), 0 2px 8px rgba(0,0,0,0.18);
+}
+
+/* --- Nav Buttons --- */
+.nav-option {
+  outline: none;
+  border: none;
+  box-shadow: 0 2px 8px rgba(80,250,123,0.08);
+  border-radius: 32px;
+  background: #44475a;
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.nav-option:focus {
+  outline: 2px solid #ffb86c;
+  outline-offset: 2px;
+}
+.nav-option:hover, .nav-option.active {
+  background: #ffb86c !important;
+  color: #23243a !important;
+  box-shadow: 0 6px 24px rgba(255,184,108,0.18);
+}
+
+/* --- Footer --- */
+footer {
+  background: #23243a;
+  color: #f8f8f2;
+  border-top: 1px solid #44475a;
+  padding: 24px 0 12px 0;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 -2px 12px rgba(80,250,123,0.04);
+}
+footer a {
+  color: #ffb86c;
+  text-decoration: underline;
+}
+footer a:hover {
+  color: #50fa7b;
+}
+
+/* --- Mobile Nav (Pill/Floating) --- */
+@media (max-width: 700px) {
+  .nav-options {
+    gap: 14px 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-option {
+    min-width: 120px;
+    max-width: 90vw;
+    padding: 12px 18px;
+    border-radius: 32px;
+    font-size: 1em;
+    box-shadow: 0 4px 16px rgba(80,250,123,0.18), 0 2px 8px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 8px;
+  }
+}
+
+/* --- Card Consistency --- */
+.resume-container, .project, .education-item, .certification-list li, .contact-icon-btn {
+  border-radius: 18px !important;
+  box-shadow: 0 4px 20px rgba(80,250,123,0.08);
+  background: #282a36;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.resume-container:hover, .project:hover, .education-item:hover, .certification-list li:hover, .contact-icon-btn:hover {
+  background: #23243a;
+  box-shadow: 0 8px 32px rgba(80,250,123,0.18);
+}
+
+/* --- Accessibility: Focus States --- */
+.section:focus-within, .resume-container:focus-within, .project:focus-within, .education-item:focus-within, .certification-list li:focus-within, .contact-icon-btn:focus {
+  outline: 2px solid #50fa7b;
+  outline-offset: 2px;
+}
+
+/* Remove glitch effect */
+.glitch, .glitch::before, .glitch::after { all: unset !important; }
+
+/* Modern About section text */
+.about-text {
+  font-size: 1.18em;
+  color: #f8f8f2;
+  background: linear-gradient(90deg, #f8f8f2 0%, #ffb86c 40%, #50fa7b 60%, #f8f8f2 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  animation: aboutShine 2.8s linear infinite;
+  filter: none;
+  opacity: 1;
+  transform: none;
+}
+@keyframes aboutShine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.section#about h2 {
+  background: linear-gradient(90deg, #ffb86c 0%, #50fa7b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 800;
+  font-size: 2.2em;
+  border-bottom: 2px solid #44475a;
+  padding-bottom: 6px;
+  margin-bottom: 18px;
+}
+
+/* Nav button improvements */
+.nav-options {
+  gap: 20px 14px !important;
+}
+.nav-option {
+  box-shadow: 0 2px 8px rgba(80,250,123,0.10), 0 1.5px 6px rgba(0,0,0,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.nav-option:focus {
+  outline: 2.5px solid #50fa7b;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(80,250,123,0.10), 0 6px 24px rgba(80,250,123,0.10);
+  transform: scale(1.04);
+}
+.nav-option:hover, .nav-option.active {
+  background: linear-gradient(90deg, #ffb86c 60%, #50fa7b 100%) !important;
+  color: #23243a !important;
+  box-shadow: 0 8px 32px rgba(255,184,108,0.22);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* --- Enhanced Nav Button Hover/Active/Focus --- */
+.nav-option {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.nav-option::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg, #ffb86c, #50fa7b, #8be9fd, #ff79c6);
+  background-size: 300% 300%;
+  opacity: 0;
+  transition: opacity 0.25s, background-position 0.7s;
+  z-index: -1;
+}
+.nav-option:hover::before, .nav-option.active::before {
+  opacity: 1;
+  animation: navGradientMove 1.2s linear infinite alternate;
+}
+@keyframes navGradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.nav-option:hover, .nav-option.active {
+  color: #23243a !important;
+  box-shadow: 0 10px 32px rgba(255,184,108,0.22);
+  transform: translateY(-3px) scale(1.05);
+}
+.nav-option i {
+  transition: transform 0.25s cubic-bezier(.4,2,.6,1), color 0.2s;
+}
+.nav-option:hover i, .nav-option.active i {
+  transform: scale(1.18) rotate(-8deg);
+  color: #ff79c6;
+}
+
+/* --- Section/Card Hover/Lift --- */
+.section, .resume-container, .project, .education-item, .certification-list li, .contact-icon-btn {
+  transition: box-shadow 0.25s, background 0.22s, transform 0.18s;
+}
+.section:hover, .resume-container:hover, .project:hover, .education-item:hover, .certification-list li:hover, .contact-icon-btn:hover {
+  background: #23243a;
+  box-shadow: 0 12px 36px rgba(80,250,123,0.18), 0 4px 16px rgba(255,184,108,0.10);
+  transform: translateY(-2px) scale(1.015);
+}
+
+/* --- Section Fade-in Animation --- */
+.section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInSection 0.8s cubic-bezier(.4,2,.6,1) forwards;
+  animation-delay: 0.1s;
+}
+@keyframes fadeInSection {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.view-credential-btn {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1.08em;
+  background: transparent;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+  margin-right: 8px;
+  box-shadow: none;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.13s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.04em;
+  border-width: 2px;
+  border-style: solid;
+  color: #a259ff;
+  border-color: #a259ff;
+}
+.view-credential-btn:hover, .view-credential-btn:focus {
+  background: #a259ff;
+  color: #fff;
+  border-color: #a259ff;
+  transform: scale(1.04);
+}
+.view-credential-btn i {
+  margin-right: 6px;
+  font-size: 1.1em;
+  display: inline-block;
+  vertical-align: middle;
+}
+@media (max-width: 700px) {
+  .view-credential-btn {
+    width: 100%;
+    min-width: 0;
+    margin-right: 0;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.08em;
+    padding: 12px 0;
+  }
+  .view-credential-btn i {
+    margin-right: 8px;
+    font-size: 1.2em;
   }
 }
