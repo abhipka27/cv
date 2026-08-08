@@ -1,0 +1,128 @@
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile */
+  * {
+    animation-duration: 0.3s !important;
+  }
+
+  /* Simplify shadows on mobile */
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  button,
+  .nav-option,
+  .skill-item,
+  .project,
+  .certification-list li,
+  .education-item,
+  .contact-icon-btn,
+  .section,
+  .profile-header {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Disable complex hover effects on touch devices */
+  @media (hover: none) {
+    button:hover,
+    .nav-option:hover,
+    .skill-item:hover,
+    .project:hover,
+    .certification-list li:hover,
+    .education-item:hover,
+    .contact-icon-btn:hover {
+      transform: none !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+  }
+
+  /* Optimize font sizes for mobile */
+  body {
+    font-size: 15px;
+  }
+
+  .profile-info h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .section {
+    padding: 20px 16px;
+    min-height: auto;
+    margin-bottom: 12px;
+  }
+
+  /* Mobile resume optimization */
+  #resume-viewer {
+    height: 400px !important;
+  }
+
+  .resume-frame {
+    min-height: 250px;
+  }
+
+  /* Reduce profile header on mobile */
+  .profile-header {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Navigation optimization */
+  .nav-container {
+    margin-bottom: 16px;
+    padding: 6px;
+  }
+
+  .nav-option {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  /* Reduce skill bar animation */
+  .skill-bar {
+    transition: width 0.8s ease !important;
+  }
+
+  /* Contact icons responsive */
+  .contact-icons {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .contact-icon-btn {
+    padding: 16px 12px;
+  }
+
+  /* Reduce backdrop blur for performance */
+  body,
+  .container,
+  .section,
+  button,
+  .nav-option,
+  .profile-header {
+    --backdrop: blur(20px) saturate(120%) !important;
+  }
+
+  /* Disable animations for reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

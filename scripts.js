@@ -1,25 +1,66 @@
      document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality with smooth transitions
+            const themeToggle = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference or default to dark
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            htmlElement.setAttribute('data-theme', currentTheme);
+            
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                // Add smooth transition class to body
+                document.body.style.transition = 'background-color 0.5s ease';
+                
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                // Rotate animation for toggle button
+                this.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                this.style.transform = 'rotate(360deg)';
+                
+                setTimeout(() => {
+                    this.style.transform = 'rotate(0deg)';
+                }, 500);
+                
+                // Remove transition after complete
+                setTimeout(() => {
+                    document.body.style.transition = '';
+                }, 500);
+            });
+
             const navOptions = document.querySelectorAll('.nav-option');
             const sections = document.querySelectorAll('.section');
+
+            let initialLoad = true;
 
             function showSection(sectionId) {
                 sections.forEach(section => {
                     section.classList.remove('active');
                 });
-                document.getElementById(sectionId).classList.add('active');
+                const targetSection = document.getElementById(sectionId);
+                targetSection.classList.add('active');
                 navOptions.forEach(option => {
                     option.classList.remove('active');
+                    option.setAttribute('aria-expanded', 'false');
                     if (option.getAttribute('data-section') === sectionId) {
                         option.classList.add('active');
+                        option.setAttribute('aria-expanded', 'true');
                     }
                 });
+                targetSection.focus({ preventScroll: true });
+                initialLoad = false;
                 // Animate skill bars if skills section
-                if(sectionId === 'skills') {
-                    document.querySelectorAll('.skill-item').forEach(item => {
-                        const bar = item.querySelector('.skill-bar');
-                        const percent = item.getAttribute('data-skill');
-                        bar.style.width = percent + '%';
-                    });
+                if(sectionId === 'skills' || sectionId === 'languages') {
+                    setTimeout(() => {
+                        document.querySelectorAll('#' + sectionId + ' .skill-item').forEach(item => {
+                            const bar = item.querySelector('.skill-bar');
+                            const percent = item.getAttribute('data-skill');
+                            bar.style.width = percent + '%';
+                        });
+                    }, 100);
                 } else {
                     document.querySelectorAll('.skill-bar').forEach(bar => {
                         bar.style.width = '0';
@@ -31,6 +72,20 @@
                 option.addEventListener('click', function() {
                     const sectionId = this.getAttribute('data-section');
                     showSection(sectionId);
+                    
+                    // Add ripple effect
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                    ripple.style.width = ripple.style.height = '100px';
+                    ripple.style.left = ripple.style.top = '50%';
+                    ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+                    ripple.style.animation = 'ripple 0.6s ease-out';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
                 });
             });
 
@@ -72,97 +127,51 @@
             setInterval(createCodeLine, 100);
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const originalFooterText = "Â© 2025 Abhishekagouda Patil. All rights reserved.";
-            const redirectUrl = "https://abhika27.blogspot.com/";
-
-            const footerElement = document.querySelector("footer p");
-
-            if (footerElement && footerElement.innerText !== originalFooterText) {
-                window.location.href = redirectUrl;
-            }
-
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.type === 'characterData' || mutation.type === 'childList') {
-                        if (footerElement.innerText !== originalFooterText) {
-                            window.location.href = redirectUrl;
-                        }
-                    }
-                });
-            });
-
-            observer.observe(footerElement, { childList: true, subtree: true, characterData: true });
-        });
-
         document.addEventListener("DOMContentLoaded", function () {
-            // Enhanced CMD-style progress loader with actual loading status
-            const barElem = document.getElementById('cmdProgressBar');
-            const cmdLine = document.querySelector('.cmd-line');
-            const barLength = 20;
+            // Animated progress preloader
+            const preloader = document.getElementById("preloader");
+            const progressBar = document.getElementById("progressBar");
+            const progressPercent = document.getElementById("progressPercent");
             let progress = 0;
-            const duration = 3000; // 3 seconds total
-            const interval = 50;
-            const start = Date.now();
             
-            // Loading stages with messages
-            const loadingStages = [
-                { progress: 0, message: "> Initializing system..." },
-                { progress: 15, message: "> Loading components..." },
-                { progress: 35, message: "> Installing dependencies..." },
-                { progress: 60, message: "> Configuring modules..." },
-                { progress: 80, message: "> Finalizing setup..." },
-                { progress: 100, message: "> System ready!" }
-            ];
-
-            function setCmdProgress(percent) {
-                const filled = Math.round((percent / 100) * barLength);
-                const empty = barLength - filled;
-                const bar = '[' + '='.repeat(filled > 0 ? filled - 1 : 0) + (filled > 0 ? '>' : '') + ' '.repeat(empty) + ']';
-                barElem.textContent = `${bar} ${Math.round(percent)}%`;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
                 
-                // Update loading message based on progress
-                const currentStage = loadingStages.find(stage => percent >= stage.progress);
-                if (currentStage && cmdLine) {
-                    cmdLine.textContent = currentStage.message;
+                if (progressBar && progressPercent) {
+                    progressBar.style.width = progress + "%";
+                    progressPercent.textContent = Math.floor(progress);
                 }
-            }
-
-            setCmdProgress(0);
-            
-            const progressTimer = setInterval(() => {
-                const elapsed = Date.now() - start;
-                progress = Math.min((elapsed / duration) * 100, 100);
-                setCmdProgress(progress);
                 
                 if (progress >= 100) {
-                    clearInterval(progressTimer);
-                    // Wait a bit more before hiding preloader
+                    clearInterval(progressInterval);
                     setTimeout(() => {
-                        const preloader = document.getElementById("preloader");
                         if (preloader) {
                             preloader.style.opacity = "0";
-                            preloader.style.visibility = "hidden";
                             setTimeout(() => {
-                                preloader.remove();
+                                preloader.style.display = "none";
                             }, 500);
                         }
                     }, 500);
                 }
-            }, interval);
-
-            // Also hide preloader when window is fully loaded
+            }, 150);
+            
+            // Hide preloader after window loads (fallback)
             window.addEventListener("load", function () {
                 setTimeout(() => {
-                    const preloader = document.getElementById("preloader");
+                    clearInterval(progressInterval);
                     if (preloader && preloader.style.opacity !== "0") {
-                        preloader.style.opacity = "0";
-                        preloader.style.visibility = "hidden";
+                        if (progressBar) progressBar.style.width = "100%";
+                        if (progressPercent) progressPercent.textContent = "100";
+                        
                         setTimeout(() => {
-                            preloader.remove();
-                        }, 500);
+                            preloader.style.opacity = "0";
+                            setTimeout(() => {
+                                preloader.style.display = "none";
+                            }, 500);
+                        }, 300);
                     }
-                }, 1000);
+                }, 500);
             });
         });
 
